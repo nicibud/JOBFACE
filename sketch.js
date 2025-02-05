@@ -46,8 +46,8 @@ let maxHappinessValue = maxHappiness[currentYear]; // Maximální hodnota pro v�
 
 function preload() {
   const years = Object.keys(maxHappiness); // Seznam aktivních roků
-  lowImages = years.map((year) => loadImage(`pics/${year}.png`)); // Načtení "low" obrázků pro každý rok
-  backgroundImages[1] = loadImage("pics/high.jpg"); // Obrázek pro vysoké skóre
+  lowImages = years.map((year) => loadImage(`${year}.png`)); // Načtení "low" obrázků pro každý rok
+  backgroundImages[1] = loadImage("high.jpg"); // Obrázek pro vysoké skóre
 }
 
 
