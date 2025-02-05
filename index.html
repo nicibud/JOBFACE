@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face Detection</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ml5js/Intro-ML-Arts-IMA@ml5-build-10-7-19/ml5_build/ml5.min.js"></script>
+  <style>
+    @font-face {
+      font-family: 'NeueHaasDisplay';
+      src: url('NeueHaasDisplay-Bold copy.ttf') format('truetype');
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'NeueHaasDisplay', sans-serif;
+    }
+
+    #main {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    #canvasContainer {
+      flex: 4;
+      position: relative;
+      height: 100%;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #sidebar {
+      width: 20%;
+      background: #000000; /* Čistě černé pozadí */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      gap: 10px;
+    }
+
+    #sidebar h2 {
+      margin: 0;
+      text-align: center;
+    }
+     #leftSidebar, #rightSidebar {
+      width: 15%;
+      background: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #leftSidebar {
+      position: absolute;
+      top: 40px; /* Pod top bar */
+      bottom: 40px; /* Nad bottom bar */
+      left: 0;
+    }
+
+    #navigationButtons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #yearButtons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 300%;
+      overflow-y: auto;
+      max-height: 500px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    #yearButtons button {
+      padding: 30px;
+      font-size: 30px;
+      background: #000000; /* Černé pozadí tlačítek */
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    #yearButtons button:hover {
+      background: #333333; /* Tmavě šedé při najetí myší */
+    }
+
+    #yearButtons button:focus {
+      background: #676767; /* Šedé při výběru */
+      outline: none;
+    }
+
+    .scrollButton {
+      background: #000000; /* Černé pozadí šipek */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 20px; 
+      border-radius: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .scrollButton:hover {
+      background: #333333; /* Tmavě šedé při najetí myší */
+    }
+
+  @keyframes scrollText {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+
+  </style>
+</head>
+<body>
+  <div id="main">
+    <!-- Video container -->
+    <div id="canvasContainer">
+      <script src="sketch.js"></script>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <h2>YEAR SELECTOR</h2>
+      <div id="navigationButtons">
+       
+        <div id="yearButtons"></div>
+       
+      </div>
+      
+    </div>
+  </div>
+  <div id="topBar" style="width: 100%; background: #000; color: white; position: absolute; top: 0; padding: 10px 0; text-align: center; overflow: hidden;">
+    <div style="display: inline-block; white-space: nowrap; animation: scrollText 10s linear infinite;">
+      Make your best face to get the job!
+    </div>
+  </div>
+  
+  <div id="bottomBar" style="width: 100%; background: #000; color: white; position: absolute; bottom: 0; padding: 10px 0; text-align: center; overflow: hidden;">
+    <div style="display: inline-block; white-space: nowrap; animation: scrollText 10s linear infinite;">
+      Press P to pause and look at the data.
+    </div>
+  </div>
+
+  <div id="leftSidebar" style="width: 15%; background: #000; color: white; position: absolute; top: 0; left: 0; height: 95%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+    <p style="text-align: center; margin-bottom: 20px;font-size: 40px;"> JOBFACE</p>
+     </div>
+
+</body>
+</html>
